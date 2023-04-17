@@ -183,7 +183,7 @@ The skeleton can be saved as a Multi-scale Tree Graph (MTG). It is
 highly recommended to save it as often as possible, especially when
 correcting the skeleton. The keyboard short-code is the same as in any
 other program: ``ctrl+S``. You can also export the MTG as a list
-(``File -> Export MTG -> As Node List``) and the project as a plantGL
+(``File -> Export MTG -> As Node List (CSV)``) and the project as a plantGL
 file (``File -> Export View -> As PlantGL File``) so you can re-import
 it using OpenAlea.
 

@@ -595,7 +595,7 @@
   </action>
   <action name="actionExportNodeList">
    <property name="text">
-    <string>As Node List</string>
+    <string>As Node List (CSV)</string>
    </property>
   </action>
   <action name="actionUndo">
