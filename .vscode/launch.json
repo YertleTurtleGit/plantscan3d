@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Current File",
+            "name": "Run PlantScan3D",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/src/openalea/plantscan3d/main_window.py",
