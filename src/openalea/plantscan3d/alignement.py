@@ -27,7 +27,7 @@ def scale_and_center(points, mtg):
 def alignGlobally(points, mtg, verbose = False):
     import openalea.plantgl.all  as pgl
     import numpy as np
-    from .pointprocessing import np_inertia_axis
+    from pointprocessing import np_inertia_axis
 
     mtgpoints = pgl.Point3Array(list(mtg.property('position').values()))
 
@@ -80,7 +80,7 @@ def alignGlobally(points, mtg, verbose = False):
 
     if checkorientation:
         if verbose: print('check orientation')
-        from .mtgmanip import mtg2pgltree
+        from mtgmanip import mtg2pgltree
         nodes, parents, vertex2node = mtg2pgltree(mtg)
         dist1 = pgl.average_distance_to_shape(points, nodes, parents, [0 for i in range(len(nodes))])
     
@@ -101,9 +101,9 @@ def alignGlobally(points, mtg, verbose = False):
 
 
 def optimizeAlignementOrientation(points, mtg, p_edir = None):
-    from .mtgmanip import mtg2pgltree
+    from mtgmanip import mtg2pgltree
     import openalea.plantgl.all  as pgl
-    from .pointprocessing import np_inertia_axis
+    from pointprocessing import np_inertia_axis
     from math import pi, degrees
 
     nodes, parents, vertex2node = mtg2pgltree(mtg)
@@ -154,9 +154,9 @@ def optimizeAlignementOrientation(points, mtg, p_edir = None):
 
 
 def optimizeAlignementPosition(points, mtg, distanceratio = 10, nbtests = 10, p_edir = None):
-    from .mtgmanip import mtg2pgltree
+    from mtgmanip import mtg2pgltree
     import openalea.plantgl.all  as pgl
-    from .pointprocessing import np_inertia_axis
+    from pointprocessing import np_inertia_axis
     from math import pi, degrees
 
     nodes, parents, vertex2node = mtg2pgltree(mtg)
@@ -199,7 +199,7 @@ def optimizeAlignementPosition(points, mtg, distanceratio = 10, nbtests = 10, p_
 
 
 def optimizeAlignementAll(points, mtg):
-    from .pointprocessing import np_inertia_axis
+    from pointprocessing import np_inertia_axis
     scale_and_center(points, mtg)
     p_eval, p_edir, p_center  = np_inertia_axis(points)
     optimizeAlignementOrientation(points, mtg, p_edir)

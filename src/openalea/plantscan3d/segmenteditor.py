@@ -17,7 +17,7 @@ if not py2exe_release:
     ldir = os.path.dirname(__file__)
     cui.check_ui_generation(os.path.join(ldir, 'segmenteditor.ui'))
 
-from . import segmenteditor_ui
+import segmenteditor_ui
 
 
 class SegmentEditor(QMainWindow, segmenteditor_ui.Ui_MainWindow):
@@ -32,7 +32,7 @@ class SegmentEditor(QMainWindow, segmenteditor_ui.Ui_MainWindow):
         self.db_instance = None
 
     def make_thumbnail(self):
-        from .thumbnailmaker import make_thumbnail
+        from thumbnailmaker import make_thumbnail
         from openalea.plantgl.all import Scene
 
         if self.gleditor.tree_seleted is None:

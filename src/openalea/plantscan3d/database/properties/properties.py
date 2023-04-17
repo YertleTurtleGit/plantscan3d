@@ -22,10 +22,10 @@ if not py2exe_release:
     cui.check_ui_generation(os.path.join(ldir, 'dateprop.ui'))
     cui.check_ui_generation(os.path.join(ldir, 'floatvalueprop.ui'))
 
-from . import create_property_ui
-from . import textprop_ui
-from . import dateprop_ui
-from . import floatvalueprop_ui
+import create_property_ui
+import textprop_ui
+import dateprop_ui
+import floatvalueprop_ui
 
 
 class Property(QWidget):
