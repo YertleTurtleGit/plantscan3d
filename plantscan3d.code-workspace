@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"cSpell.words": [
+			"mtgeditor",
+			"openalea",
+			"plantgl",
+			"plantscan",
+			"pointinfo"
+		]
+	}
+}

@@ -9,11 +9,11 @@ from openalea.plantgl.gui.qt.QtGui import *
 
 if not py2exe_release:
     # Qt UI Build
-    from . import ui_compiler as cui
+    import ui_compiler as cui
     ldir = os.path.dirname(__file__)
     cui.check_ui_generation(os.path.join(ldir, 'progress_dialog.ui'))
 
-from . import progress_dialog_ui
+import progress_dialog_ui
 
 class ProgressDialog(QDialog, progress_dialog_ui.Ui_ProgressDialog):
 

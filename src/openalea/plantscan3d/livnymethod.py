@@ -84,7 +84,7 @@ def livny_method(pointList, root, connectall=True, nbcontractionsteps=3, maxfilt
 
 def livny_method_mtg(mtg, startfrom, pointList, nbcontractionsteps=3, maxfiltering=10, filter_short_branch=False,
                      angle_between_trunk_and_lateral=60):
-    from .mtgmanip import pgltree2mtg
+    from mtgmanip import pgltree2mtg
     connect_all_points = False if mtg.nb_vertices(mtg.max_scale()) > 1 else True
     rootpos = Vector3(mtg.property('position')[startfrom])
     root = len(pointList)

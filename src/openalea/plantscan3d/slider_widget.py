@@ -11,10 +11,10 @@ ldir = os.path.dirname(__file__)
 
 if not py2exe_release:
     # Qt UI Build
-    from . import ui_compiler as cui
+    import ui_compiler as cui
     cui.check_ui_generation(os.path.join(ldir, 'slider_widget.ui'))
 
-from . import slider_widget_ui
+import slider_widget_ui
 import re
 
 

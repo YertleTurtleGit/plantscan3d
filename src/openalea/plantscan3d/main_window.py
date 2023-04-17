@@ -16,17 +16,17 @@ from os.path import join
 ldir = os.path.dirname(__file__)
 
 if not py2exe_release:
-    from . import ui_compiler as cui
+    import ui_compiler as cui
 
     cui.check_ui_generation(join(ldir, 'main_window.ui'))
     cui.check_rc_generation(join(ldir, 'plantscan3d.qrc'))
 
-from . import main_window_ui
-from .settings import Settings
-from .database import dbeditor, db_connection
-from .segmenteditor import SegmentEditor
-from .module_loader import ModuleLoader
-from .__version__ import version as psc_version
+import main_window_ui
+from settings import Settings
+from database import dbeditor, db_connection
+from segmenteditor import SegmentEditor
+from module_loader import ModuleLoader
+from __version__ import version as psc_version
 
 class MainWindow(QMainWindow, main_window_ui.Ui_MainWindow):
 
@@ -77,7 +77,7 @@ class MainWindow(QMainWindow, main_window_ui.Ui_MainWindow):
         self.actionShowAll.triggered.connect(self.mtgeditor.showEntireScene)
         self.actionRecalculate_Colors.triggered.connect(self.mtgeditor.RecalculateColors)
 
-        from .main_viewer import WhiteTheme, BlackTheme, GreyTheme, ThemeDict
+        from main_viewer import WhiteTheme, BlackTheme, GreyTheme, ThemeDict
         self.menuTheme.clear()
         def gen_updatetheme(theme):
             def updateTheme():
@@ -286,7 +286,7 @@ Implemented by F. Boudon et al. <br>Copyright: CIRAD-INRIA-INRA.<br>
         settings.setValue('State', self.saveState())
         settings.endGroup()
 
-        from .database.server_manip import server_info
+        from database.server_manip import server_info
         server_info.save_register_ids()
 
         self.mtgeditor.closeEvent(event)
@@ -355,7 +355,7 @@ Implemented by F. Boudon et al. <br>Copyright: CIRAD-INRIA-INRA.<br>
                 return len(self.mtgeditor.points.pointList)
 
             def make_thumbnail():
-                from .thumbnailmaker import make_thumbnail
+                from thumbnailmaker import make_thumbnail
                 from openalea.plantgl.all import Scene
                 return make_thumbnail(Scene([self.mtgeditor.points]), (256, 256))
 
@@ -400,7 +400,7 @@ Implemented by F. Boudon et al. <br>Copyright: CIRAD-INRIA-INRA.<br>
             uri += quote_plus(mongodb_username) + ':' + quote_plus(mongodb_password) + '@' + mongodb_address
         else:
             uri += mongodb_address
-        from .database.server_manip import server_info, WorkerTestConnection
+        from database.server_manip import server_info, WorkerTestConnection
 
         server_info.mongodb_uri = uri
 
