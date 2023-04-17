@@ -1491,25 +1491,50 @@ class MainViewer(QGLViewer):
         sc.save(fname)
 
     def exportNodeList(self):
-        initialname = os.path.dirname(self.mtgfile) + '/' + os.path.basename(self.mtgfile) + '.txt' if self.mtgfile else get_shared_data('mtgdata')
-        fname = QFileDialog.getSaveFileName(self, "Save Geom file",
-                                            initialname,
-                                            "Txt Files (*.txt);;All Files (*.*)")
+        initialname = (
+            os.path.dirname(self.mtgfile)
+            + "/"
+            + os.path.basename(self.mtgfile)
+            + ".csv"
+            if self.mtgfile
+            else get_shared_data("mtgdata")
+        )
+        fname = QFileDialog.getSaveFileName(
+            self, "Save Geom file", initialname, "CSV Files (*.csv);;All Files (*.*)"
+        )
         fname = str(fname[0])
-        if len(fname) == 0: return
+        if len(fname) == 0:
+            return
         self.saveNodeList(fname)
         self.showMessage("Export in " + fname + " done ...")
 
     def saveNodeList(self, fname):
-        stream = open(fname, 'w')
-        position = self.mtg.property('position')
-        radius = self.mtg.property('radius')
-        stream.write("# automatically exported mtg\n")
-        stream.write("# vid parentid edgetype XX YY ZZ Radius\n")
-        stream.write(str(self.mtg.nb_vertices(scale=self.mtg.max_scale())) + '\n')
+        stream = open(fname, "w")
+        position = self.mtg.property("position")
+        radius = self.mtg.property("radius")
+        stream.write("vid,parentid,edgetype,x,y,z,radius\n")
         for vid in self.mtg.vertices(scale=self.mtg.max_scale()):
             p = position[vid]
-            stream.write(str(vid) + '\t' + ('' if self.mtg.parent(vid) is None else str(self.mtg.parent(vid))) + '\t' + str(self.mtg.edge_type(vid)) + '\t' + str(p.x) + '\t' + str(p.y) + '\t' + str(p.z) + '\t' + str(radius.get(vid, '')) + '\n')
+            stream.write(
+                str(vid)
+                + ","
+                + (
+                    "None"
+                    if self.mtg.parent(vid) is None
+                    else str(self.mtg.parent(vid))
+                )
+                + ","
+                + str(self.mtg.edge_type(vid))
+                + ","
+                + str(p.x)
+                + ","
+                + str(p.y)
+                + ","
+                + str(p.z)
+                + ","
+                + str(radius.get(vid, ""))
+                + "\n"
+            )
         stream.close()
 
     def adjustTo(self, obj):
@@ -4052,4 +4077,3 @@ class MainViewer(QGLViewer):
 
 
 # ---------------------------- End Property ----------------------------------------
-u
